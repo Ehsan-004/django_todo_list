@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <ul>
+            <li><label for="username">username:</label></li>
+            <li><input type="text" name="username" id="username"></li>
+            <li><label for="email">email:</label></li>
+            <li><input type="email" name="email" id="email"></li>
+            <li><label for="password">password</label></li>
+            <li><input type="password" name="password" id="password"></li>
+            <li><input type="submit" name="" id="" value="register"></li>
+        </ul>
+    </form>
+</div>
+<div>
+    {{ error }}
+</div>
+<div>
+    <h4><a href="{% url 'todo_user:login' %}">login</a></h4>
+    <h4><a href="{% url 'todos:index' %}"></a></h4>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div>
+    <form action="{% url 'todos:add_todo' %}" method="post">
+        <ul>
+            {% csrf_token %}
+            <li><label for="title">title:</label></li>
+            <li><input type="text" name="title" id="title"></li>
+            <li><label for="description">add a description:</label></li>
+            <li><textarea name="description" id="description" cols="30" rows="10"></textarea></li>
+            <li><label for="start_date">enter start day(leave blank for current time)</label></li>
+            <li><input type="date" id="start_date"></li>
+            <li><input type="submit" value="add new todo"></li>
+        </ul>
+    </form>
+</div>
+<div>
+    <h4 style="color: red">{{ error }}</h4>
+</div>
+<div>{{ error }}</div>
+</body>
+</html>

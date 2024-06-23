@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<div>
+    <h1>ToDoList</h1>
+</div>
+
+<div>
+    <ul>
+        <li><a href="{% url 'todos:index' %}">Home</a></li>
+        {% if user and user.is_authenticated %}
+            <li><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+            <li><a href="{% url 'todos:todos' %}">my_todo</a></li>
+        {% else %}
+            <li><a href="{% url 'todo_user:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</div>
+</body>
+</html>

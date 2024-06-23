@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
+</head>
+<body>
+<div style="display: inline">
+    <ul>
+        <li><h2>username : {{ user.username }}</h2></li>
+        <li><h4><a href="{% url 'todos:index' %}">Home</a></h4></li>
+        <li><h3>edit my profile</h3></li>
+        <li><h3><a href="{% url 'todos:todos' %}">todos</a></h3></li>
+        <li><h3><a href="">add new task</a></h3></li>
+        <li><h4><a href="{% url 'todo_user:logout' %}"><button>logout</button></a></h4></li>
+    </ul>
+</div>
+</body>
+</html>

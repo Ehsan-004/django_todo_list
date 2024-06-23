@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+    <link rel="stylesheet" href="{% static 'todos.css' %}">
+</head>
+<body>
+
+<div class="head_container">
+    <ul class="head_list">
+        <li class="head_element"><a href="{% url 'todos:index' %}">Home</a></li>
+        <li class="head_element"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+    </ul>
+</div>
+
+{% for todo in todo_list %}
+    <div style="width: 90%; display: inline-block">
+        <div class="todo_container">
+            <h3><a class="todo_title" href="{% url 'todos:todo_detail' todo.id %}">{{ todo.title }}</a></h3>
+            <h3>start at : {{ todo.start_date }}</h3>
+            {% if todo.done %}
+                <h3>you did it!</h3>
+                <h3>finish data : {{ todo.end_date }}</h3>
+            {% else %}
+                <h3>not done yet</h3>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if not todo.done %}
+        <div style="display: inline-block">
+            <form method="post" action="{% url 'todos:did_it' %}">
+                {% csrf_token %}
+                <input type="hidden" name="task_id" value="{{ todo.id }}">
+                <input type="submit" value="I did it">
+            </form>
+        </div>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>

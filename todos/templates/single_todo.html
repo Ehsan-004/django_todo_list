@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<div style="border: 4px solid aqua; border-radius: 20px">
+    <ul style="align-content: center">
+        <li style="display: inline-block"><a href="{% url 'todos:index' %}">Home</a></li>
+        <li style="display: inline-block"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+    </ul>
+</div>
+
+<ul style="border: 2px solid black; border-radius: 20px ">
+    <li><h3>{{ todo.title }}</h3></li>
+    <li><h3>start at : {{ todo.start_date }}</h3></li>
+    {% if todo.done %}
+        <li><h3>you did it!</h3></li>
+        <li><h3>finish data : {{ todo.end_date }}</h3></li>
+    {% else %}
+        <li><h3>not done yet</h3></li>
+    {% endif %}
+    <li>
+        <h3>{{ todo.description }}</h3>
+    </li>
+</ul>
+</body>
+</html>
