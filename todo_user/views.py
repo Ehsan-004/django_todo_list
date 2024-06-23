@@ -53,3 +53,29 @@ class LogoutView(View):
             return redirect('todos:index')
         logout(request)
         return redirect('todos:index')
+
+
+class EditProfile(View):
+    http_method_name = ['get', 'post']
+    template_name = 'edit_profile.html'
+
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect('todo_user:login')
+        return render(request, self.template_name)
+
+    def post(self, request):
+        if not request.user.is_authenticated:
+            return redirect('todos:index')
+
+        username = request.POST.get('username', False)
+        email = request.POST.get('email', False)
+        user = request.user
+
+        if False in [username, email]:
+            return render(request, self.template_name, {'error': 'Please enter both username and email'})
+
+        user.username = username
+        user.email = email
+        user.save()
+        return redirect('todo_user:profile')

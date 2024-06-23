@@ -1,19 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ user.username }}'s Profile</title>
+        <link rel="stylesheet" href="{% static 'todos.css' %}">
 </head>
 <body>
-<div style="display: inline">
-    <ul>
-        <li><h2>username : {{ user.username }}</h2></li>
-        <li><h4><a href="{% url 'todos:index' %}">Home</a></h4></li>
-        <li><h3>edit my profile</h3></li>
-        <li><h3><a href="{% url 'todos:todos' %}">todos</a></h3></li>
-        <li><h3><a href="">add new task</a></h3></li>
-        <li><h4><a href="{% url 'todo_user:logout' %}"><button>logout</button></a></h4></li>
+
+<div class="head_container">
+    <ul class="head_list">
+        <li class="head_element"><h1>Profile</h1></li>
+        <li class="head_element"><a href="{% url 'todos:index' %}">Home</a></li>
+        <li class="head_element"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+        <li class="head_element"><a href="{% url 'todo_user:edit_profile' %}">edit profile</a></li>
+        <li class="head_element"><a href="{% url 'todos:todos' %}">my tasks</a></li>
+        <li class="head_element"><a href="{% url 'todos:add_todo' %}">add new todo</a></li>
+        <li class="head_element"><h4><a href="{% url 'todo_user:logout' %}"><button>logout</button></a></h4></li>
     </ul>
 </div>
+
 </body>
 </html>

@@ -10,8 +10,10 @@
 
 <div class="head_container">
     <ul class="head_list">
+        <li class="head_element"><h1>Your tasks</h1></li>
         <li class="head_element"><a href="{% url 'todos:index' %}">Home</a></li>
         <li class="head_element"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+        <li class="head_element"><a href="{% url 'todos:add_todo' %}">add new todo</a></li>
     </ul>
 </div>
 
@@ -29,15 +31,20 @@
         </div>
     </div>
 
-    {% if not todo.done %}
-        <div style="display: inline-block">
+    <div style="display: inline-block">
+        {% if not todo.done %}
             <form method="post" action="{% url 'todos:did_it' %}">
                 {% csrf_token %}
                 <input type="hidden" name="task_id" value="{{ todo.id }}">
                 <input type="submit" value="I did it">
             </form>
-        </div>
-    {% endif %}
+        {% endif %}
+        <form action="{% url 'todos:delete_todo' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="task_id" value="{{ todo.id }}">
+            <input type="submit" value="delete this task">
+        </form>
+    </div>
 {% endfor %}
 
 </body>

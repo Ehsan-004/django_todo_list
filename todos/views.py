@@ -87,3 +87,17 @@ class DoTheTask(View):
         task.done = 1
         task.save()
         return redirect('todos:todos')
+
+
+class DeleteTask(View):
+    http_method_names = ['post', ]
+
+    def post(self, request):
+        if not request.user.is_authenticated:
+            return redirect('todo_user:login')
+        task_to_delete = int(request.POST.get('task_id', False))
+        if not task_to_delete:
+            return redirect('todos:index')
+        task = Task.objects.get(id=task_to_delete)
+        task.delete()
+        return redirect('todos:todos')

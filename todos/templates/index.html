@@ -1,25 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="{% static 'todos.css' %}">
 </head>
 <body>
 
-<div>
-    <h1>ToDoList</h1>
-</div>
-
-<div>
-    <ul>
-        <li><a href="{% url 'todos:index' %}">Home</a></li>
+<div class="head_container">
+    <ul class="head_list">
+        <li class="head_element"><h1>ToDoList</h1></li>
+        <li class="head_element"><a href="{% url 'todos:index' %}">Home</a></li>
         {% if user and user.is_authenticated %}
-            <li><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
-            <li><a href="{% url 'todos:todos' %}">my_todo</a></li>
+            <li class="head_element"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+            <li class="head_element"><a href="{% url 'todos:todos' %}">my_todos</a></li>
         {% else %}
-            <li><a href="{% url 'todo_user:login' %}">Login</a></li>
+            <li class="head_element"><a href="{% url 'todo_user:login' %}">Login</a></li>
         {% endif %}
+        <li class="head_element"><a href="{% url 'todos:add_todo' %}">add new todo</a></li>
     </ul>
 </div>
+
 </body>
 </html>

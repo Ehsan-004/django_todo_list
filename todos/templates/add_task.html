@@ -1,11 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'todos.css' %}">
 </head>
 <body>
-<div>
+
+<div class="head_container">
+    <ul class="head_list">
+        <li class="head_element"><h1>Add new task</h1></li>
+        <li class="head_element"><a href="{% url 'todos:index' %}">Home</a></li>
+        <li class="head_element"><a href="{% url 'todo_user:profile' %}">{{ user.username }}</a></li>
+        <li class="head_element"><a href="{% url 'todos:add_todo' %}">add new todo</a></li>
+    </ul>
+</div>
+
+<div style="
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid black;
+    padding: 10px;
+    border-radius: 10%;
+    align-content: center">
     <form action="{% url 'todos:add_todo' %}" method="post">
         <ul>
             {% csrf_token %}
